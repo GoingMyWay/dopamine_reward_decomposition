@@ -209,7 +209,8 @@ class ImplicitQuantileAgent(rainbow_agent.RainbowAgent):
         self._replay_net_target_quantile_values,
         batch_indexed_target_values)[:, None]
 
-    return rewards + gamma_with_terminal * target_quantile_values
+    # return rewards + gamma_with_terminal * target_quantile_values
+    return rewards/float(self.num_tau_prime_samples) + gamma_with_terminal * target_quantile_values
 
   def _build_train_op(self):
     """Builds a training op.
